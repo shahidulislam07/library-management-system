@@ -1,0 +1,213 @@
+{
+  "info": {
+    "name": "Library Management System API",
+    "description": "Postman collection for the Django REST Framework Library Management System final project.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_url", "value": "http://127.0.0.1:8000/api" }
+  ],
+  "item": [
+    {
+      "name": "Authors",
+      "item": [
+        {
+          "name": "List Authors",
+          "request": { "method": "GET", "url": "{{base_url}}/authors/" }
+        },
+        {
+          "name": "Create Author",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{base_url}}/authors/",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"George\",\n  \"last_name\": \"Orwell\",\n  \"email\": \"orwell@example.com\",\n  \"bio\": \"English novelist.\",\n  \"date_of_birth\": \"1903-06-25\",\n  \"nationality\": \"British\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Retrieve Author",
+          "request": { "method": "GET", "url": "{{base_url}}/authors/1/" }
+        },
+        {
+          "name": "Update Author",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{base_url}}/authors/1/",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"George\",\n  \"last_name\": \"Orwell\",\n  \"email\": \"orwell@example.com\",\n  \"bio\": \"Updated bio.\",\n  \"date_of_birth\": \"1903-06-25\",\n  \"nationality\": \"British\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Partial Update Author",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{base_url}}/authors/1/",
+            "body": { "mode": "raw", "raw": "{\n  \"nationality\": \"English\"\n}" }
+          }
+        },
+        {
+          "name": "Delete Author",
+          "request": { "method": "DELETE", "url": "{{base_url}}/authors/1/" }
+        }
+      ]
+    },
+    {
+      "name": "Categories",
+      "item": [
+        { "name": "List Categories", "request": { "method": "GET", "url": "{{base_url}}/categories/" } },
+        {
+          "name": "Create Category",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{base_url}}/categories/",
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Fiction\",\n  \"description\": \"Fictional works\"\n}" }
+          }
+        },
+        { "name": "Retrieve Category", "request": { "method": "GET", "url": "{{base_url}}/categories/1/" } },
+        {
+          "name": "Update Category",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{base_url}}/categories/1/",
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Fiction\",\n  \"description\": \"Updated description\"\n}" }
+          }
+        },
+        { "name": "Delete Category", "request": { "method": "DELETE", "url": "{{base_url}}/categories/1/" } }
+      ]
+    },
+    {
+      "name": "Books",
+      "item": [
+        { "name": "List Books", "request": { "method": "GET", "url": "{{base_url}}/books/" } },
+        { "name": "Filter Books by Category", "request": { "method": "GET", "url": "{{base_url}}/books/?category=Fiction" } },
+        { "name": "Filter Books by Author", "request": { "method": "GET", "url": "{{base_url}}/books/?author=1" } },
+        { "name": "Search Books", "request": { "method": "GET", "url": "{{base_url}}/books/?search=orwell" } },
+        { "name": "Order Books by Price Desc", "request": { "method": "GET", "url": "{{base_url}}/books/?ordering=-price" } },
+        {
+          "name": "Create Book",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{base_url}}/books/",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"1984\",\n  \"isbn\": \"9780451524935\",\n  \"author_id\": 1,\n  \"category_ids\": [1],\n  \"publication_date\": \"1949-06-08\",\n  \"description\": \"Dystopian novel.\",\n  \"price\": \"9.99\",\n  \"total_copies\": 5,\n  \"available_copies\": 5\n}"
+            }
+          }
+        },
+        { "name": "Retrieve Book", "request": { "method": "GET", "url": "{{base_url}}/books/1/" } },
+        {
+          "name": "Update Book",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{base_url}}/books/1/",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"1984\",\n  \"isbn\": \"9780451524935\",\n  \"author_id\": 1,\n  \"category_ids\": [1],\n  \"publication_date\": \"1949-06-08\",\n  \"description\": \"Updated description.\",\n  \"price\": \"12.99\",\n  \"total_copies\": 5,\n  \"available_copies\": 5\n}"
+            }
+          }
+        },
+        {
+          "name": "Partial Update Book",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{base_url}}/books/1/",
+            "body": { "mode": "raw", "raw": "{\n  \"price\": \"14.99\"\n}" }
+          }
+        },
+        { "name": "Delete Book", "request": { "method": "DELETE", "url": "{{base_url}}/books/1/" } }
+      ]
+    },
+    {
+      "name": "Members",
+      "item": [
+        { "name": "List Members", "request": { "method": "GET", "url": "{{base_url}}/members/" } },
+        { "name": "Filter Active Members", "request": { "method": "GET", "url": "{{base_url}}/members/?is_active=true" } },
+        { "name": "Search Members", "request": { "method": "GET", "url": "{{base_url}}/members/?search=Rahim" } },
+        {
+          "name": "Create Member",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{base_url}}/members/",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"full_name\": \"Rahim Uddin\",\n  \"email\": \"rahim@example.com\",\n  \"phone_number\": \"+8801700000000\",\n  \"address\": \"Chattogram, Bangladesh\"\n}"
+            }
+          }
+        },
+        { "name": "Retrieve Member", "request": { "method": "GET", "url": "{{base_url}}/members/1/" } },
+        {
+          "name": "Update Member",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{base_url}}/members/1/",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"full_name\": \"Rahim Uddin\",\n  \"email\": \"rahim@example.com\",\n  \"phone_number\": \"+8801700000001\",\n  \"address\": \"Updated address\",\n  \"is_active\": true\n}"
+            }
+          }
+        },
+        { "name": "Delete Member", "request": { "method": "DELETE", "url": "{{base_url}}/members/1/" } }
+      ]
+    },
+    {
+      "name": "Loans",
+      "item": [
+        { "name": "List Loans", "request": { "method": "GET", "url": "{{base_url}}/loans/" } },
+        { "name": "Filter Unreturned Loans", "request": { "method": "GET", "url": "{{base_url}}/loans/?is_returned=false" } },
+        { "name": "Filter Overdue Loans", "request": { "method": "GET", "url": "{{base_url}}/loans/?overdue=true" } },
+        {
+          "name": "Create Loan",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{base_url}}/loans/",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"book_id\": 1,\n  \"member_id\": 1,\n  \"due_date\": \"2026-08-02\"\n}"
+            }
+          }
+        },
+        { "name": "Retrieve Loan", "request": { "method": "GET", "url": "{{base_url}}/loans/1/" } },
+        {
+          "name": "Return Loan (custom action)",
+          "request": { "method": "POST", "url": "{{base_url}}/loans/1/return_book/" }
+        },
+        { "name": "Delete Loan", "request": { "method": "DELETE", "url": "{{base_url}}/loans/1/" } }
+      ]
+    },
+    {
+      "name": "User Profiles",
+      "item": [
+        { "name": "List Profiles", "request": { "method": "GET", "url": "{{base_url}}/profiles/" } },
+        {
+          "name": "Create Profile (with new User)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{base_url}}/profiles/",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"librarian1\",\n  \"email\": \"librarian1@example.com\",\n  \"password\": \"StrongPass123!\",\n  \"phone_number\": \"+8801800000000\",\n  \"membership_number\": \"LIB-0001\",\n  \"is_librarian\": true\n}"
+            }
+          }
+        },
+        { "name": "Retrieve Profile", "request": { "method": "GET", "url": "{{base_url}}/profiles/1/" } },
+        { "name": "Delete Profile", "request": { "method": "DELETE", "url": "{{base_url}}/profiles/1/" } }
+      ]
+    }
+  ]
+}
